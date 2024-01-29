@@ -1,0 +1,12 @@
+/opt/fbnginx/logs/*.log {
+    rotate 5
+    size 100M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+    postrotate
+              [ ! -f /opt/fbnginx/logs/nginx.pid ] || kill -USR1 `cat /opt/fbnginx/logs/nginx.pid`
+    endscript
+}
